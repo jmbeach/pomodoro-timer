@@ -29,6 +29,17 @@ function Timer() {
     this.start()
   }
 
+  this.expire = function () {
+    alertSound.play()
+    notifier.alert('Going back to last interval')
+    notifier.alterTitle()
+    notifier.flashIcons()
+    this.intervalCount--
+    this.switchToPreviousMode()
+    updateModeStatus()
+    this.start()
+  }
+
   this.start = function () {
     var minutesWork = parseInt($('#minutesWork')[0].value)
     var secondsWork = parseInt($spinnerWorkSeconds[0].value)
@@ -69,6 +80,36 @@ function Timer() {
   
   this.toggle = function () { $timer.countdown('toggle') }
   
+  this.switchToPreviousMode = function () {
+    switch (this.mode) {
+    // if working before expiration
+    case this.modes.WORK:
+      if (this.intervalCountNotRests % this.intervalsUntilBreak == 1) {
+        // take a long rest
+        this.mode = this.modes.LONG_REST
+      }
+      else {
+        // take a normal rest
+        this.mode = this.modes.REST
+      }
+
+      // if the interval number spinner exists
+      if (typeof ($spinnerInterval) != 'undefined') {
+        // decrement the counter
+        $spinnerInterval.spinner('stepDown', 1)
+      }
+
+      this.intervalCountNotRests--
+      break
+    case this.modes.REST:
+      this.mode = this.modes.WORK
+      break
+    case this.modes.LONG_REST:
+      this.mode = this.modes.WORK
+      break
+    }
+  }
+
   this.switchToNextMode = function () {
     switch (this.mode) {
     // if working before expiration
@@ -88,6 +129,7 @@ function Timer() {
         // increment the counter
         $spinnerInterval.spinner('stepUp', 1)
       }
+
       this.intervalCountNotRests++
       break
     case this.modes.REST:
