@@ -9,24 +9,26 @@
   <script src="vendor/jquery.plugin.js"></script>
   <script src="vendor/jquery.countdown.min.js"></script>
   <link href="vendor/jquery-ui/themes/base/core.css" rel="stylesheet" />
-  <link href="vendor/jquery.countdown.css" rel="stylesheet" />
-  <link href="style/style.css" rel="stylesheet" />
+  <link href="style/main.css" rel="stylesheet" />
   <script src="scripts/notify.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="logo">
       <a href="https://icons8.com/icon/new-icons/all">
-        <img src="images/icons8-cheerleader-female-50.png" alt="pom-pom timer logo by icons8"/>
+        <img src="images/icons8-cheerleader-female-100.png" alt="pom-pom timer logo by icons8"/>
       </a>
     </div>
-    <div class="site-header">
-      <h1>Pom-pom Timer</h1>
-    </div>
+    <h1>Pom-pom 
+      Timer</h1>
     <nav class="site-nav">
       <ul>
-        <li class="active">Home</li>
-        <li>About</li>
+        <li>
+          <a class="active" href="/home">Home</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -67,24 +69,24 @@
     </ul>
   </aside>
 
-  <section class="timer-display">
-    <div id="divTimer">
+  <article class="main-content">
+    <section class="timer-display">
       <span id="timer"></span>
-    </div>
-  </section>
+    </section>
 
-  <section class="current-status">
-    <span>You are currently </span>
-    <span id="mode">working</span>
-    <span>.</span>
-  </section>
+    <section class="current-status">
+      <span>You are currently </span>
+      <span id="mode">working</span>
+      <span>.</span>
+    </section>
 
-  <section class="controls">
-    <button type="button" onclick="timer.start();">Begin</button>
-    <button type="button" onclick="timer.toggle()">Pause</button>
-    <button type="button" onclick="timer.expire()">Next</button>
-    <button type="button" onclick="timer.previous()">Previous</button>
-  </section>
+    <section class="controls">
+      <button type="button" onclick="timer.start();">Begin</button>
+      <button type="button" onclick="timer.toggle()">Pause</button>
+      <button type="button" onclick="timer.expire()">Next</button>
+      <button type="button" onclick="timer.previous()">Previous</button>
+    </section>
+  </article>
   
   <script src="scripts/timer.js"></script>
   <script>

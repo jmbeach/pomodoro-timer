@@ -1,0 +1,79 @@
+$font-stack: Arial, sans-serif;
+$primary-color: #333;
+$wide-padding: 4em;
+
+$accent-main: #1c84c3;
+$accent-secondary: #ff0095;
+$accent-secondary2: lighten($accent-secondary, 10%);
+$accent-secondary3: lighten($accent-secondary, 20%);
+$accent-secondary4: lighten($accent-secondary, 30%);
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.active {
+  color: $accent-secondary4;
+}
+
+.site-header {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  background: $accent-main;
+  padding: 0 $wide-padding 0 $wide-padding;
+  box-sizing: border-box;
+
+  .logo {
+    float: left;
+  }
+
+  h1 {
+    white-space: pre-line;
+    float: left;
+    margin-bottom: 0;
+    color: white;
+  }
+}
+
+.site-nav {
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: $wide-padding;
+
+  ul, li {
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+  }
+}
+
+.widget-options {
+  float: left;
+}
+
+.main-content {
+  float: left;
+}
+
+.countdown-row {
+  margin: 0 auto;
+
+  .countdown-amount {
+    font-size: 200%;
+    padding-right: .5em;
+  }
+
+  .countdown-period {
+    padding-right: 1em;
+  }
+}
