@@ -29,7 +29,7 @@ function Timer() {
     this.start()
   }
 
-  this.expire = function () {
+  this.previous = function () {
     alertSound.play()
     notifier.alert('Going back to last interval')
     notifier.alterTitle()
