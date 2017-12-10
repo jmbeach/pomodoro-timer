@@ -2,92 +2,103 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>Pomodoro timer</title>
-    <link rel="shortcut icon" href="images/timer.ico" id="icon" />
-    <script src="vendor/jquery/dist/jquery.min.js"></script>
-    <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
-    <script src="vendor/jquery.plugin.js"></script>
-    <script src="vendor/jquery.countdown.min.js"></script>
-    <link href="vendor/jquery-ui/themes/base/core.css" rel="stylesheet" />
-    <link href="vendor/jquery.countdown.css" rel="stylesheet" />
-    <link href="style/style.css" rel="stylesheet" />
-    <script src="scripts/notify.js"></script>
+  <meta charset="utf-8" />
+  <title>Pomodoro timer</title>
+  <link rel="shortcut icon" href="images/timer.ico" id="icon" />
+  <script src="vendor/jquery/dist/jquery.min.js"></script>
+  <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+  <script src="vendor/jquery.plugin.js"></script>
+  <script src="vendor/jquery.countdown.min.js"></script>
+  <link href="vendor/jquery-ui/themes/base/core.css" rel="stylesheet" />
+  <link href="vendor/jquery.countdown.css" rel="stylesheet" />
+  <link href="style/style.css" rel="stylesheet" />
+  <script src="scripts/notify.js"></script>
 </head>
 <body>
-
-    <div class="wrapper">
-        <div id="divMenu">
-            <div>
-                <span>Work </span>
-                <input class="spinner" id="minutesWork" value="25" />
-                <span> minutes </span>
-                <input class="spinner" id="secondsWork" value="0" />
-                <span> seconds.</span>
-            </div>
-            <div> <span>Minutes of rest: </span><input class="spinner" id="minutesRest" value="10" /> </div>
-            <div> <span>Minutes of longest rest: </span><input class="spinner" id="minutesLongRest" value="20" /> </div>
-            <div><span>Interval Number: </span><input class="spinner" id="intervalNumber" value="1"></div>
-            <button type="button" onclick="timer.start();">Begin</button>
-            <button type="button" onclick="timer.toggle()">Pause</button>
-            <div><span>You are currently </span><span id="mode">working</span><span>.</span></div>
-        </div>
-        <div id="divTimer">
-            <span id="timer"></span>
-        </div>
+  <div class="wrapper">
+    <div id="divMenu">
+      <div>
+        <span>Work </span>
+        <input class="spinner" id="minutesWork" value="25" />
+        <span> minutes </span>
+        <input class="spinner" id="secondsWork" value="0" />
+        <span> seconds.</span>
+      </div>
+      <div>
+        <span>Minutes of rest: </span>
+        <input class="spinner" id="minutesRest" value="10" />
+      </div>
+      <div>
+        <span>Minutes of longest rest: </span>
+        <input class="spinner" id="minutesLongRest" value="20" />
+      </div>
+      <div>
+        <span>Interval Number: </span>
+        <input class="spinner" id="intervalNumber" value="1">
+      </div>
+      <button type="button" onclick="timer.start();">Begin</button>
+      <button type="button" onclick="timer.toggle()">Pause</button>
+      <div>
+        <span>You are currently </span>
+        <span id="mode">working</span>
+        <span>.</span>
+      </div>
     </div>
-    <script src="scripts/timer.js"></script>
-    <script>
-        //#region GLOBALS
-        var strIdMode = "#mode";
-        var strIdWorkSeconds = "#secondsWork";
-        var strIdWorkMinutes = "#minutesWork";
-        var strIdRestMinutes = "#minutesRest";
-        var strIdLongRestMinutes = "#minutesLongRest";
-        var strIdSpinnerInterval = "#intervalNumber";
-        var $spinnerInterval = $(strIdSpinnerInterval);
-        var $spanMode = $(strIdMode);
-        var $spinnerWorkMinutes = $(strIdWorkMinutes);
-        var $spinnerWorkSeconds = $(strIdWorkSeconds);
-        var $spinnerLongRestMinutes = $(strIdLongRestMinutes);
-        var $spinnerRestMinutes = $(strIdRestMinutes);
-        var timer = new Timer();
-        //#endregion
-        //#region SPINNER_SETUP
-        $spinnerWorkMinutes.spinner({
-            max: 59,
-            min: 0
-        });
-        $spinnerRestMinutes.spinner({
-            max: 60,
-            min: 1
-        });
-        $spinnerLongRestMinutes.spinner({
-            max: 60,
-            min: 1
-        });
-        $spinnerWorkSeconds.spinner({
-            min: 0,
-            max: 59
-        });
-        $spinnerInterval.spinner({
-            min: 1,
-            change: function (event, ui) {
-                timer.intervalCountNotRests = $(this).spinner("value");
-            }
-        });
-        //#endregion
-        //#region HELPER_METHODS
-        function updateModeStatus() {
-            if (timer.mode == timer.modes.WORK) {
-                $spanMode.html("working");
-            }
-            else {
-                $spanMode.html("resting");
-            }
-        }
-        //#endregion
-    </script>
-
+    <div id="divTimer">
+      <span id="timer"></span>
+    </div>
+  </div>
+  <script src="scripts/timer.js"></script>
+  <script>
+    //#region GLOBALS
+    var strIdMode = "#mode";
+    var strIdWorkSeconds = "#secondsWork";
+    var strIdWorkMinutes = "#minutesWork";
+    var strIdRestMinutes = "#minutesRest";
+    var strIdLongRestMinutes = "#minutesLongRest";
+    var strIdSpinnerInterval = "#intervalNumber";
+    var $spinnerInterval = $(strIdSpinnerInterval);
+    var $spanMode = $(strIdMode);
+    var $spinnerWorkMinutes = $(strIdWorkMinutes);
+    var $spinnerWorkSeconds = $(strIdWorkSeconds);
+    var $spinnerLongRestMinutes = $(strIdLongRestMinutes);
+    var $spinnerRestMinutes = $(strIdRestMinutes);
+    var timer = new Timer();
+    //#endregion
+    //#region SPINNER_SETUP
+    $spinnerWorkMinutes.spinner({
+      max: 59,
+      min: 0
+    });
+    $spinnerRestMinutes.spinner({
+      max: 60,
+      min: 1
+    });
+    $spinnerLongRestMinutes.spinner({
+      max: 60,
+      min: 1
+    });
+    $spinnerWorkSeconds.spinner({
+      min: 0,
+      max: 59
+    });
+    $spinnerInterval.spinner({
+      min: 1,
+      change: function (event, ui) {
+        timer.intervalCountNotRests = $(this).spinner("value");
+      }
+    });
+    //#endregion
+    //#region HELPER_METHODS
+    function updateModeStatus() {
+      if (timer.mode == timer.modes.WORK) {
+        $spanMode.html("working");
+      }
+      else {
+        $spanMode.html("resting");
+      }
+    }
+    //#endregion
+  </script>
 </body>
 </html>
